@@ -11,13 +11,18 @@
             headers: {
                 'Content-Type': 'application/json'
             },
-            dataType: 'json',
+            dataType: 'json'
         })
         .done(function(data) {
-            $('.results').text( data );
+            var newArray = data.map( function(org) {
+                return {
+                    avatar: org.avatar_url,
+                    name: org.login
+                }
+            });
+            
+            console.log(newArray);
 
-            data.forEach(i)
-            console.log(data);
         })
         .fail(function(xhr) {
             handleAjaxError( xhr, $('.results') );
