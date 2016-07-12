@@ -2,6 +2,9 @@
   list-style: none;
   width: 75%; }
 
+.userForm {
+  display: inline; }
+
 .orgs {
   position: relative;
   background-color: #F0F0F0;

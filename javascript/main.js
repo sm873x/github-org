@@ -23,7 +23,6 @@
         })
         .done(function(data) {
             $('.results').text( showOrgs(data) );
-            //console.log(data);
         })
         .fail(function(xhr) {
             handleAjaxError( xhr, $('.results') );
@@ -32,7 +31,7 @@
 
     function handleAjaxError(xhr) {
         if (xhr.status === 404) {
-            $('.results').text('Check your link address please');
+            $('.results').text('Check yo\'self because link doesn\'t exist');
         } else {
             $('.results').text('Ruh roh...');
         }

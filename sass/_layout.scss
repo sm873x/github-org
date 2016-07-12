@@ -3,6 +3,10 @@
     width: $orgListWidth;
 }
 
+.userForm {
+    display: inline;
+}
+
 .orgs {
     position: relative;
     background-color: $orgListBackgroundColor;
