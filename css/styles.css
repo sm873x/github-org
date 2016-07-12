@@ -1,14 +1,28 @@
 .results {
-  list-style: none; }
+  list-style: none;
+  width: 50%; }
 
-.org {
-  position: relative; }
+.orgs {
+  position: relative;
+  background-color: #F0F0F0;
+  margin-bottom: 10px;
+  border: 1px solid #b1adad;
+  border-radius: 8px;
+  padding: 10px; }
 
 .avatar {
-  width: 30px;
-  height: 30px; }
+  width: 40px;
+  height: 40px;
+  vertical-align: bottom;
+  border-radius: 6px; }
 
 .orgName {
-  display: inline; }
+  display: inline;
+  margin-left: 10px;
+  vertical-align: middle;
+  font-family: "Roboto Condensed", Arial;
+  font-size: 34px;
+  color: #b1adad;
+  text-shadow: #ffffff 1px 1px; }
 
 /*# sourceMappingURL=styles.css.map */
