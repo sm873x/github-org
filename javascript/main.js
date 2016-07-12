@@ -5,11 +5,13 @@
 
     $('.userForm').on( 'submit', function(e) {
         e.preventDefault();
-        getOrgs($('.username').val());
+            $('.orgs').remove();
+            getOrgs($('.username').val());
     });
 
     $('.load').on('click', function loadOrg() {
-        getOrgs($('.username').val());
+            $('.orgs').remove();
+            getOrgs($('.username').val());
     });
 
     function getOrgs(username) {
