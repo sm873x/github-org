@@ -2,28 +2,20 @@
     'use strict';
 
     window.githuborg = ns = ( ns || {});
-    //
-    // var newUser;
-    //
-    // $('.userForm').on( 'submit', function(e) {
-    //     e.preventDefault();
-    //
-    //     var newInput = $('.username').val();
-    //
-    //     return newUser = changeUser(newInput);
-    //
-    //
-    // })
-    //
-    // function changeUser(newInput) {
-    //     var newURL = 'https\:api.github.com/users/' + newInput + '/orgs';
-    //     return newURL;
-    // }
 
-    $('.load').on('click', function loadJSON() {
+    $('.userForm').on( 'submit', function(e) {
+        e.preventDefault();
+        getOrgs($('.username').val());
+    })
 
+
+    $('.load').on('click', function loadOrg() {
+        getOrgs($('.username').val());
+    });
+
+    function getOrgs(username) {
         $.ajax({
-            url: 'https://api.github.com/users/jisaacks/orgs',
+            url: 'https://api.github.com/users/' + username + '/orgs',
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -37,8 +29,7 @@
         .fail(function(xhr) {
             handleAjaxError( xhr, $('.results') );
         });
-
-    });
+    }
 
     function handleAjaxError(xhr) {
         if (xhr.status === 404) {
