@@ -6,8 +6,7 @@
     $('.userForm').on( 'submit', function(e) {
         e.preventDefault();
         getOrgs($('.username').val());
-    })
-
+    });
 
     $('.load').on('click', function loadOrg() {
         getOrgs($('.username').val());
