@@ -1,47 +1,37 @@
-(function(ns) {
+(function() {
     'use strict';
 
-    window.githuborg = ns = ( ns || {});
+    var $results = $('.results');
+    var $username = $('.username').val();
 
     $('.userForm').on( 'submit', function(e) {
         e.preventDefault();
-            $('.orgs').remove();
-            getOrgs($('.username').val());
-    });
 
-    $('.load').on('click', function loadOrg() {
-            $('.orgs').remove();
-            getOrgs($('.username').val());
+        $('.orgs').remove();
+        getOrgs($username);
     });
 
     function getOrgs(username) {
         $.ajax({
-            url: 'https://api.github.com/users/' + username + '/orgs',
+            url: 'https://api.github.com/users/' + $username + '/orgs',
             method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            },
+            headers: { 'Content-Type': 'application/json'},//unecessary
             dataType: 'json'
         })
         .done(function(data) {
-            $('.results').text( showOrgs(data) );
+            // console.log(arguments);//xhr object is in position [2]
+            // console.log( JSON.parse(arguments[2].responseText) );//this is done automatically by jquery because we stipulated dataType as JSON
+            showOrgs(data);
         })
         .fail(function(xhr) {
-            handleAjaxError( xhr, $('.results') );
+            //xhr = xml http request
+            handleAjaxError( xhr, $results );
         });
-    }
-
-    function handleAjaxError(xhr) {
-        if (xhr.status === 404) {
-            $('.results').text('Check yo\'self because link doesn\'t exist');
-        } else {
-            $('.results').text('Ruh roh...');
-        }
     }
 
     function showOrgs(data) {
         data.forEach( function(org) {
-            $('.results')
+            $results
                 .append('<li class="orgs"></li>')
                 .find('li:last-child')
                     .append('<img class="avatar" src=' + org.avatar_url + '/>')
@@ -49,4 +39,12 @@
             });
     }
 
-})(window.githuborg);
+    function handleAjaxError(xhr, elem) {
+        if (xhr.status === 404) {
+            $(elem).text('Check yo\'self because link doesn\'t exist');
+        } else {
+            $(elem).text('Ruh roh...');
+        }
+    }
+
+})();
