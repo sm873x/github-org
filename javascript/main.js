@@ -2,18 +2,19 @@
     'use strict';
 
     var $results = $('.results');
-    var $username = $('.username').val();
+    var $username = $('.username');
 
     $('.userForm').on( 'submit', function(e) {
         e.preventDefault();
 
         $('.orgs').remove();
-        getOrgs($username);
+        getOrgs($username.val());
+
     });
 
     function getOrgs(username) {
         $.ajax({
-            url: 'https://api.github.com/users/' + $username + '/orgs',
+            url: 'https://api.github.com/users/' + username + '/orgs',
             method: 'GET',
             headers: { 'Content-Type': 'application/json'},//unecessary
             dataType: 'json'
